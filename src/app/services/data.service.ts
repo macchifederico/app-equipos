@@ -7,8 +7,8 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 })
 export class DataService {
 
-  // API_URL= "http://localhost:3000/api/jugadores";  
-  API_URL= "https://app-equipos-backend-rtf8.vercel.app";
+//API_URL= "http://localhost:3000/api/jugadores";  
+ API_URL= "https://192.168.0.42:3000/api/jugadores";
 
   constructor(private http: HttpClient) { }
 
@@ -53,9 +53,17 @@ export class DataService {
             "prop_lesiones":  Number(jugador.lesiones)
         },
         "promedioHabilidades": 0
-    }
+      }
     }
     return this.http.post<any>(`${this.API_URL}/create`, body);
   
+  }
+
+  deletePlayer(id_jugador: number, id_usuario: number): Observable<any>{
+    const body = {
+      "id_jugador": id_jugador,
+      "id_usuario": id_usuario
+    }
+    return this.http.post<any>(`${this.API_URL}/delete`, body);
   }
 }

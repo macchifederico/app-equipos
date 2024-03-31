@@ -16,6 +16,9 @@ export class PlantelComponent {
   teamTwo : any = [];
   jugadoresSeleccionados: any = [];  
   seleccionados: any = [];
+  id_usuario : number = 0;
+  id_jugador : number = 0;
+  jugadorABorrar : any = null;
 
   constructor(private router: Router, private ds: DataService) {
   }
@@ -58,5 +61,21 @@ export class PlantelComponent {
     })
 
     this.router.navigate(['/equipos']);
+  }
+
+  borrarJugador(jugador: any){
+    this.jugadorABorrar = jugador;
+    
+    const id_usuario = this.jugadorABorrar.id_usuario;
+    const id_jugador = this.jugadorABorrar.id;
+
+    this.ds.deletePlayer(id_jugador, id_usuario).subscribe({
+      next: (data: any) => {
+        console.log(data);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
   }
 }
