@@ -1,17 +1,15 @@
 <p>Tarjeta por jugador</p>
 
- <div class="row g-4" >
+<div class="row g-4">
   <div class="col-sm-12 col-md-4" *ngFor="let jugador of jugadores; let i = index">
     <div class="card">
-      <img src="{{jugador.img_url}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{jugador.nombre.toUpperCase()}}</h5>
         <span class="card-text">Aca va el grafico de habilidades</span>
       </div>
-      <!-- <app-grafico></app-grafico> -->
       <div class="text-center">
         <canvas baseChart class="chart"
-        [data]="radarChartData"
+        [data]="radarChartDataArray[i]"
         [options]="radarChartOptions"
         [type]="radarChartType">
         </canvas>

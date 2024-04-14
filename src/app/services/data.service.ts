@@ -7,9 +7,9 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 })
 export class DataService {
 
-// API_URL= "http://localhost:3000/api/jugadores";  
+API_URL= "http://localhost:3000/api/jugadores";  
 //  API_URL= "https://192.168.0.42:3000/api/jugadores";
- API_URL= "http://app-equipos.ddns.net:3000/api/jugadores";  
+//API_URL= "http://app-equipos.ddns.net:3000/api/jugadores";  
  
   constructor(private http: HttpClient) { }
 

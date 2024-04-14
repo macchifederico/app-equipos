@@ -17,53 +17,23 @@ export class TarjetaComponent {
   mejorHabilidad: any;
   peorHabilidad: any;
   unJugador: any;
+  radarChartDataArray: ChartData<'radar'>[] = [];
 
-  constructor(private router: Router, private ds: DataService) {}
-
-  ngOnInit() {
-    this.obtenerJugadoresPorUsuario();    
-  }
-  
-  obtenerJugadoresPorUsuario(){
-    const id_usuario = 1; //provisorio
-    this.ds.getAllPlayersByUserId(id_usuario).subscribe({
-      next: (data: any) => {      
-        this.jugadores = data.players;     
-      },
-      error: (error: any) => {
-      }
-    })
-  }
-
-  //Grafico
+  radarChartData: ChartData<'radar'> = {
+    labels: [],
+    datasets: []
+  };
 
   radarChartLabels: string[] = [ 'Tiro', 'Remate', 'Defensa', 'Velocidad', 'Gambeta', 'Tecnica', 'Rusticidad', 'Temperamento' ];
-
+  
   radarChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
       r: {
         min: 0,
-        max: 100
+        max: 5
       }
     }
-  };
-
-  radarChartData: ChartData<'radar'> = {
-    labels: this.radarChartLabels,
-    datasets: this.jugadores.forEach((element: any) => {      
-      const data = {data: [element.tiro, element.remate, element.defensa, element.velocidad, element.gambeta, 
-             element.tecnica, element.rusticidad, element.temperamento], label: element.nombre}
-      return data; 
-    })
-    // [
-    //   { data: [ this.unJugador.habilidades.tiro, this.unJugador.habilidades.remate, 
-    //             this.unJugador.habilidades.defensa, this.unJugador.habilidades.velocidad, 
-    //             this.unJugador.habilidades.gambeta,
-    //             this.unJugador.habilidades.tecnica, this.unJugador.habilidades.rusticidad,
-    //             this.unJugador.habilidades.temperamento ], label: this.unJugador.nombre },
-    // ],
-    
   };
 
   radarChartType: ChartType = 'radar';
@@ -76,5 +46,33 @@ export class TarjetaComponent {
     console.log(event, active);
   }
 
+
+  constructor(private router: Router, private ds: DataService) {}
+
+  ngOnInit() {
+    this.obtenerJugadoresPorUsuario();    
+  }
   
+  obtenerJugadoresPorUsuario(){
+    const id_usuario = 1; //provisorio
+    this.ds.getAllPlayersByUserId(id_usuario).subscribe({
+      next: (data: any) => {      
+        this.jugadores = data.players;   
+        this.radarChartDataArray = this.jugadores.map((jugador: any) => {      
+          return {
+            labels: ['Tiro', 'Remate', 'Defensa', 'Velocidad', 'Gambeta', 'Tecnica', 'Rusticidad', 'Temperamento'],
+            datasets: [{
+              data: [jugador.tiro, jugador.remate, jugador.defensa, jugador.velocidad, jugador.gambeta, 
+                     jugador.tecnica, jugador.rusticidad, jugador.temperamento],
+              label: jugador.nombre
+            }]
+          };
+        });  
+      },
+      error: (error: any) => {
+        console.error('Error al obtener jugadores:', error);
+      }
+    })
+  }
+
 }
