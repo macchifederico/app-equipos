@@ -1,0 +1,7 @@
+.input-error {
+    border-color: red;
+}
+
+.input-ok {
+    border-color: green;
+}

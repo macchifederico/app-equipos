@@ -12,8 +12,10 @@
                 <ngb-rating [max]="5" [readonly]="true"  [rate]="jugador.promedioHabilidades"></ngb-rating>
             </div>
             <div class="col-1">
-                <button style="border: none; background-color: white;" (click)="borrarJugador(jugador)"><i class="fa-solid fa-trash"></i></button>
+                <button style="border: none; background-color: white; color: red;" (click)="borrarJugador(jugador)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
             </div>
         </div>
     </div>
-    <button class="btn btn-warning mb-3" style="width: 100%;" routerLink="/crear_jugador">Agregar jugador</button>
+    <button class="btn btn-warning mb-3" style="width: 100%;" routerLink="/crearJugador">Agregar jugador</button>

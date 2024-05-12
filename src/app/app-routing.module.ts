@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'equipos', component: EquiposComponent},
   {path: 'plantel', component: PlantelComponent},
   {path: 'jugadores', component: TarjetaComponent},
-  {path: 'crear_jugador', component: CrearJugadorComponent}
+  {path: 'crearJugador', component: CrearJugadorComponent}
 
 ];
 

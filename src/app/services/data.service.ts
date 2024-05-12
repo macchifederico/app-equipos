@@ -31,27 +31,27 @@ API_URL= "http://localhost:3000/api/jugadores";
     return this.http.post<any>(`${this.API_URL}/teams`, body);
   }
 
-  createPlayer(jugador: any, id_usuario: number): Observable<any>{
+  createPlayer(jugador: any, id_usuario: number): Observable<any>{    
     const body = {
       "jugador":{
         "id_usuario":   id_usuario,
         "id_equipo":    null,
-        "nombre":       jugador.nombre,
-        "apodo":        jugador.apodo,
-        "posicion_1":   jugador.posicion1,
-        "posicion_2":   jugador.posicion2,
-        "img_url":      jugador.img_url,
+        "nombre":       jugador.value.nombre,
+        "apodo":        jugador.value.apodo,
+        "posicion_1":   jugador.value.posicion1,
+        "posicion_2":   jugador.value.posicion2,
+        "img_url":      jugador.value.img_url,
         "habilidades":{
-            "tiro":           Number(jugador.tiro),
-            "remate":         Number(jugador.remate),
-            "defensa":        Number(jugador.defensa),
-            "velocidad":      Number(jugador.velocidad),
-            "gambeta":        Number(jugador.gambeta),
-            "estado_fisico":  Number(jugador.fisico),
-            "tecnica":        Number(jugador.tecnica),
-            "rusticidad":     Number(jugador.rusticidad),
-            "temperamento":   Number(jugador.temperamento),
-            "prop_lesiones":  Number(jugador.lesiones)
+            "tiro":           Number(jugador.value.tiro),
+            "remate":         Number(jugador.value.remate),
+            "defensa":        Number(jugador.value.defensa),
+            "velocidad":      Number(jugador.value.velocidad),
+            "gambeta":        Number(jugador.value.gambeta),
+            "estado_fisico":  Number(jugador.value.fisico),
+            "tecnica":        Number(jugador.value.tecnica),
+            "rusticidad":     Number(jugador.value.rusticidad),
+            "temperamento":   Number(jugador.value.temperamento),
+            "prop_lesiones":  Number(jugador.value.lesiones)
         },
         "promedioHabilidades": 0
       }
